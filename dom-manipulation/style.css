@@ -1,0 +1,134 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding-left: 30%;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* QUOTE DISPLAY STYLES */
+.quote-box {
+    border: 2px solid #007bff; /* Changed border color for emphasis */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #eaf5ff; /* Light blue background for contrast */
+}
+
+#quoteText {
+    font-size: 1.5em;
+    font-style: italic;
+    margin: 0 0 10px 0;
+}
+
+.category {
+    font-size: 0.9em;
+    color: #4a4a4a;
+    font-weight: bold;
+    padding: 3px 8px;
+    background-color: #cce0ff;
+    border-radius: 4px;
+}
+
+/* BUTTON STYLES */
+button {
+    background-color: #28a745; /* Success Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px 5px 15px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e7e34;
+}
+
+/* INPUT/ADD QUOTE SECTION STYLES */
+input[type="text"], select {
+    width: calc(45% - 10px);
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding/border in the element's total width/height */
+}
+.input-section {
+    padding: 15px 0;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.input-section h2 {
+    color: #6c757d;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.input-section input[type="text"] {
+    width: calc(45% - 10px);
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding/border in the element's total width/height */
+}
+
+.input-section button {
+    background-color: #007bff; /* Primary Blue for Add Button */
+}
+
+.input-section button:hover {
+    background-color: #0056b3;
+}
+
+/* ADDED QUOTES LIST STYLES (for dynamic content) */
+.added-quotes-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    text-align: left;
+}
+
+#userQuotesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#userQuotesList li {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    word-wrap: break-word; /* Ensures long quotes wrap */
+}

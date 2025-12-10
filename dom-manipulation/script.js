@@ -37,12 +37,13 @@ function createAddQuoteForm() {
 
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
-        showRandomQuote(); 
+        displayRandomQuote(); 
         
         alert('New quote added successfully!');
     } else {
         alert('Please enter both quote and category.');
     }
 }
-newQuoteButton.addEventListener('click', showRandomQuote);
-showRandomQuote();
+
+newQuoteButton.addEventListener('click', displayRandomQuote);
+displayRandomQuote();
