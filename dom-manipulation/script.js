@@ -28,8 +28,13 @@ function createAddQuoteForm() {
     const newQuoteText = document.getElementById('newQuoteText').value.trim();
     const newQuoteCategory = document.getElementById('newQuoteCategory').value.trim();
     
+    
     if (newQuoteText && newQuoteCategory) {
         quotes.push({quote: newQuoteText, category: newQuoteCategory});
+        const newListItem = document.createElement('li');
+        newListItem.textContent = `"${newQuoteText}" - Category: ${newQuoteCategory}`;
+        document.getElementById('quoteDisplay').appendChild(newListItem);
+
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
         showRandomQuote(); 
