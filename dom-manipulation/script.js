@@ -7,7 +7,8 @@ let quotes = [];
 
 const storedQuotes = localStorage.getItem('quotes');
 
-if (storedQuotes) {
+function loadQuotes(){
+    if (storedQuotes) {
     quotes = JSON.parse(storedQuotes);
 }else{
     quotes = [ 
@@ -17,6 +18,22 @@ if (storedQuotes) {
     {quote: "Success usually comes to those who are too busy to be looking for it.", category: "Success"},
     {quote: "Don't watch the clock; do what it does. Keep going.", category: "Time Management"},
 ];
+savedQuotes();
+}
+}
+
+function savedQuotes(){
+    localStorage.setItem('quotes', JSON.stringify(quotes));
+}
+
+function renderQuoteList(){
+    if(!userQuotesList) return;
+    userQuotesList.innerHTML = '';
+    quotes.forEach(quoteObj => {
+        const newListItem = document.createElement('li');
+        newListItem.textContent = `"${quoteObj.quote}" - Category: ${quoteObj.category}`;
+        document.getElementById('userQuotesList').appendChild(newListItem);
+    })
 }
 
 function displayRandomQuote() {
@@ -38,10 +55,8 @@ function createAddQuoteForm() {
     
     if (newQuoteText && newQuoteCategory) {
         quotes.push({quote: newQuoteText, category: newQuoteCategory});
-        const newListItem = document.createElement('li');
-        newListItem.textContent = `"${newQuoteText}" - Category: ${newQuoteCategory}`;
-        document.getElementById('userQuotesList').appendChild(newListItem);
-
+        savedQuotes();
+        renderQuoteList();
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
         displayRandomQuote(); 
@@ -52,5 +67,7 @@ function createAddQuoteForm() {
     }
 }
 
+loadQuotes();
+renderQuoteList();
 newQuoteButton.addEventListener('click', displayRandomQuote);
 displayRandomQuote();
