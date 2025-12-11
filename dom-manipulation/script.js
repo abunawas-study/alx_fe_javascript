@@ -5,9 +5,10 @@ const userQuotesList = document.getElementById('userQuotesList');
 
 let quotes = [];
 
-const storedQuotes = localStorage.getItem('quotes');
+
 
 function loadQuotes(){
+    const storedQuotes = localStorage.getItem('quotes');
     if (storedQuotes) {
     quotes = JSON.parse(storedQuotes);
 }else{
@@ -18,11 +19,11 @@ function loadQuotes(){
     {quote: "Success usually comes to those who are too busy to be looking for it.", category: "Success"},
     {quote: "Don't watch the clock; do what it does. Keep going.", category: "Time Management"},
 ];
-savedQuotes();
+saveQuotes();
 }
 }
 
-function savedQuotes(){
+function saveQuotes(){
     localStorage.setItem('quotes', JSON.stringify(quotes));
 }
 
@@ -55,7 +56,7 @@ function createAddQuoteForm() {
     
     if (newQuoteText && newQuoteCategory) {
         quotes.push({quote: newQuoteText, category: newQuoteCategory});
-        savedQuotes();
+        saveQuotes();
         renderQuoteList();
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
@@ -98,7 +99,7 @@ function importQuotes(event) {
         try {
             const importedQuotes = JSON.parse(e.target.result);
             quotes = importedQuotes;
-            savedQuotes();
+            saveQuotes();
             renderQuoteList();
         } catch (error) {
             alert('Error importing quotes. Please make sure the file is valid JSON.');

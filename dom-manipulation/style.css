@@ -130,5 +130,52 @@ input[type="text"], select {
     border-radius: 4px;
     font-size: 0.9em;
     line-height: 1.4;
-    word-wrap: break-word; /* Ensures long quotes wrap */
+    word-wrap: break-word;
+}
+/* --- DATA MANAGEMENT SECTION STYLES --- */
+
+.data-management-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.data-management-section h2 {
+    color: #495057;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+.data-management-section button {
+    background-color: #6c757d;
+    margin: 5px 10px;
+    padding: 10px 15px;
+}
+
+.data-management-section button:hover {
+    background-color: #5a6268;
+}
+.file-label {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #0056b3;
+} 
+#importFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }

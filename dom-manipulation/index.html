@@ -18,6 +18,14 @@
             <input type="text" id="newQuoteCategory" placeholder="Enter category here">
             <button id="addQuote()">Add Quote</button>
     </div>
+    <hr>
+    <div class="data-management-section">
+        <h2>Data Management</h2>
+        <button onclick="exportQuotes()">Export Quotes (JSON)</button>
+        
+        <label for="importFile" class="file-label">Import Quotes (.json)</label>
+        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+    </div>
    
     <script src="script.js"></script>
   </body>
