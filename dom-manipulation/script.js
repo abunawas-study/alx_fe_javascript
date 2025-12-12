@@ -3,6 +3,7 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 const newQuoteButton = document.getElementById('newQuote'); 
 const userQuotesList = document.getElementById('userQuotesList');
 const categoryFilter = document.getElementById('categoryFilter');
+const SERVER_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 let quotes = [];
 
@@ -139,6 +140,67 @@ function importQuotes(event) {
         }
     };
     reader.readAsText(file);
+}
+
+async function FetchQuotesFromServer(){
+    try{
+        const response = await fetch(SERVER_URL);
+        const serverData = await response.json();
+
+        return serverData.slice(0, 5).map(post => ({
+            quote: post.title,
+            category:`Server-User-${post.userId}`
+        }));
+    }catch(error){
+        console.error('Failed to fetch from server:', error);
+        return [];
+    }
+}
+
+async function postQuotesToServer(quotesObj){
+    try{
+        await fetch(SERVER_URL, {
+            method: 'POST',
+            body: JSON.stringify(quotesObj),
+            headers: { 'Content-type': 'application/json; charset=UTF-8'}
+        });
+    }catch(error){
+        console.error('Failed to post quotes to server:', error);
+    }
+}
+
+async function syncQuotes(){
+    showSyncNotification("Syncing with server...");
+    const serverQuotes = await FetchQuotesFromServer();
+    const localQuotesString = JSON.stringify(quotes);
+    let newQuotesCount = 0;
+
+    serverQuotes.forEach(serverQuote => {
+        if(!quotes.some(localQuote => localQuote.quote === serverQuote.quote)){
+            quotes.push(serverQuote);
+            newQuotesCount++;
+        }
+    });
+    if(newQuotesCount > 0){
+        saveQuotes();
+        renderQuoteList();
+        populateCategories();
+        showSyncNotification(`Quotes synced with server ${newQuotesCount} new quotes added.`);
+    }else{
+        showSyncNotification("Quotes are up to date.");
+    }
+}
+
+function showSyncNotification(message){
+    const syncStatus = document.getElementById('syncStatus');
+    syncStatus.textContent = message;
+    syncStatus.style.display = 'block';
+
+    setTimeout(() => {
+        syncStatus.style.display = 'none';
+    }, 3000);
+    
+    setInterval(syncQuotes, 300000); // Sync every 30 seconds
 }
 
 loadQuotes();
