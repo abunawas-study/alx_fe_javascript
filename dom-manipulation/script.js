@@ -187,7 +187,7 @@ async function syncQuotes(){
         populateCategories();
         showSyncNotification(`Quotes synced with server ${newQuotesCount} new quotes added.`);
     }else{
-        showSyncNotification("Quotes synced with server.");
+        showSyncNotification("Quotes synced with server!.");
     }
 }
 
