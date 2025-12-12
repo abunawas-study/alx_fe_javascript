@@ -142,7 +142,7 @@ function importQuotes(event) {
     reader.readAsText(file);
 }
 
-async function FetchQuotesFromServer(){
+async function fetchQuotesFromServer(){
     try{
         const response = await fetch(SERVER_URL);
         const serverData = await response.json();
