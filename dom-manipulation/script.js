@@ -162,7 +162,7 @@ async function postQuotesToServer(quotesObj){
         await fetch(SERVER_URL, {
             method: 'POST',
             body: JSON.stringify(quotesObj),
-            headers: { 'Content-type': 'application/json; charset=UTF-8'}
+            headers: { 'Content-Type': 'application/json; charset=UTF-8'}
         });
     }catch(error){
         console.error('Failed to post quotes to server:', error);
