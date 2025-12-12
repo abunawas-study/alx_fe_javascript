@@ -200,10 +200,11 @@ function showSyncNotification(message){
         syncStatus.style.display = 'none';
     }, 3000);
     
-    setInterval(syncQuotes, 300000); // Sync every 30 seconds
+   
 }
 
 loadQuotes();
 renderQuoteList();
-newQuoteButton.addEventListener('click', displayRandomQuote);
 displayRandomQuote();
+setInterval(syncQuotes, 300000); // Sync every 30 seconds
+newQuoteButton.addEventListener('click', displayRandomQuote);
