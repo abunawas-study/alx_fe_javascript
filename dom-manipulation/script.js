@@ -2,10 +2,9 @@
 const quoteDisplay = document.getElementById('quoteDisplay');
 const newQuoteButton = document.getElementById('newQuote'); 
 const userQuotesList = document.getElementById('userQuotesList');
+const categoryFilter = document.getElementById('categoryFilter');
 
 let quotes = [];
-
-
 
 function loadQuotes(){
     const storedQuotes = localStorage.getItem('quotes');
@@ -21,6 +20,39 @@ function loadQuotes(){
 ];
 saveQuotes();
 }
+}
+
+function populateCategories(){
+    const uniqueCategories = new Set(quotes.map(quoteObj => quoteObj.category));
+    uniqueCategories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+    });
+
+    const lastFilter = localStorage.getItem('lastFilterCategory');
+    if (lastFilter) {
+        categoryFilter.value = lastFilter;
+    }
+}
+
+function filterQuotes(){
+    const selectedCategory = categoryFilter.value;
+    localStorage.setItem('lastFilterCategory', selectedCategory);
+    const filteredQuotes = selectedCategory === 'all' ? quotes : quotes.filter(quoteObj => quoteObj.category === selectedCategory);
+    renderQuoteList(filteredQuotes);
+}
+
+function renderQuoteList(quotesToRender = quotes){
+    if(!userQuotesList) return;
+    userQuotesList.innerHTML = '';
+
+    quotesToRender.forEach(quoteObj => {
+        const newListItem = document.createElement('li');
+        newListItem.textContent = `"${quoteObj.quote}" - Category: ${quoteObj.category}`;
+        userQuotesList.appendChild(newListItem);
+    });
 }
 
 function saveQuotes(){
@@ -57,7 +89,8 @@ function createAddQuoteForm() {
     if (newQuoteText && newQuoteCategory) {
         quotes.push({quote: newQuoteText, category: newQuoteCategory});
         saveQuotes();
-        renderQuoteList();
+        populateCategories();
+        filterQuotes();
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
         displayRandomQuote(); 

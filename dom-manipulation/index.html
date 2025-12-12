@@ -16,8 +16,13 @@
             <h2>Add a New Quote</h2>
             <input type="text" id="newQuoteText" placeholder="Enter quote here">
             <input type="text" id="newQuoteCategory" placeholder="Enter category here">
+            <select id="categoryFilter" onchange="filterQuotes()">
+              <option value="all">All Categories</option>
+            <!-- Dynamically populated categories -->
+           </select>
             <button id="addQuote()">Add Quote</button>
     </div>
+   
     <hr>
     <div class="data-management-section">
         <h2>Data Management</h2>
